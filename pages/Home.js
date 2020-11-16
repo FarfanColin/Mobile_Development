@@ -6,15 +6,6 @@ import {
     Raleway_400Regular,
     Raleway_700Bold,
 } from "@expo-google-fonts/raleway";
-//  Importing socket.io-client and connecting to the server
-import io from "socket.io-client";
-
-var dev = false;
-var hostname = dev
-    ? "http://localhost:3000"
-    : "https://gps-stats-server.herokuapp.com";
-console.log("Connecting to " + hostname);
-const socket = io.connect(hostname);
 
 //  Showing Home Screen Components
 export default function Home({ navigation }) {
@@ -33,7 +24,7 @@ export default function Home({ navigation }) {
                     color="grey"
                     variant="contained"
                     onPress={() => {
-                        navigation.navigate("FindMe", { socket });
+                        navigation.navigate("FindMe");
                     }}
                     title="FIND ME"
                 />

@@ -14,19 +14,9 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import Geolocation from "@react-native-community/geolocation";
 
 export default function FindMe({ navigation }) {
-    //  Recovers socket id from Home screen
-    const socket = navigation.state.params.socket;
-    // Stores statistics
-    const [stats, setStats] = useState("");
-    // Stores user's socket
-    const [user, setUser] = useState(socket.id);
-    //  Stores the currect active sockets
-    const [countPeople, setCountPeople] = useState(0);
-    //  Used to enable or disable button
-    const [isLocated, setIsLocated] = useState(true);
+
     //  Stores user's data
     const [userData, setUserData] = useState({
-        userSocket: "",
         latitude: 0,
         longitude: 0,
         location: "",
@@ -42,33 +32,6 @@ export default function FindMe({ navigation }) {
         Raleway_400Regular,
         Raleway_600SemiBold,
         Raleway_700Bold,
-    });
-
-    //  Creates an interval where refreshes the statistics every 1 second
-    useEffect(() => {
-        const interval = setInterval(() => {
-            socket.emit("refresh");
-        }, 1000);
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
-
-    //  Stores user's socket for every connection
-    socket.on("newUser", (data) => {
-        setUser(data);
-    });
-
-    //  Refreshes the stats with the data recovered from the server
-    socket.on("newStats", (data) => {
-        let textStats = "";
-        let counter = 0;
-        for (var i = 0; i < data.length; i++) {
-            textStats += data[i].location + ": " + data[i].counter + "\n";
-            counter += data[i].counter;
-        }
-        setCountPeople(counter);
-        setStats(textStats);
     });
 
     //  Open cage function to retrieve data using the latitude and longitude
@@ -90,24 +53,17 @@ export default function FindMe({ navigation }) {
                     loc = json.results[0].components.town;
                 }
                 //  Calls function to save data
-                saveData(lat, long, loc, json.results[0].components);
-                //  Emitting event to send data to the server
-                return socket.emit("sendData", { user, loc });
+                return setUserData({
+                    latitude: lat,
+                    longitude: long,
+                    location: loc,
+                    country: json.results[0].components.country,
+                    county: json.results[0].components.county,
+                    postcode: json.results[0].components.postcode,
+                });    
             });
     };
 
-    //  Function to store data recovered from opencage into a variable
-    function saveData(lat, long, loc, data) {
-        return setUserData({
-            userSocket: user,
-            latitude: lat,
-            longitude: long,
-            location: loc,
-            country: data.country,
-            county: data.county,
-            postcode: data.postcode,
-        });
-    }
 
     //  Main function called when the button is pressed
     function locateMe() {
@@ -129,9 +85,6 @@ export default function FindMe({ navigation }) {
             toValue: 1,
             duration: 3000,
         }).start();
-
-        //  Disables button
-        setIsLocated(false);
     }
 
     //  Function called in case of error
@@ -144,12 +97,8 @@ export default function FindMe({ navigation }) {
         <View style={styles.container}>
             <Text style={styles.title}>Welcome to FindMe App!</Text>
 
-            <View style={styles.rowUser}>
-                <FontAwesome5 name="user-alt" size={25} color="black" />
-                <Text style={styles.user}>{user}</Text>
-            </View>
             <View style={{ width: "45%" }}>
-                <Button onPress={locateMe} title="Where am I?" disabled={!isLocated} />
+                <Button onPress={locateMe} title="Where am I?" />
             </View>
             <Animated.View
                 style={[
@@ -193,23 +142,6 @@ export default function FindMe({ navigation }) {
                 <View style={styles.list}>
                     <Text style={styles.listRowHeader}>Postcode:</Text>
                     <Text style={styles.listRow}>{userData.postcode}</Text>
-                </View>
-            </Animated.View>
-            <Animated.View
-                style={[
-                    styles.fadingContainer,
-                    {
-                        opacity: fadeAnim, // Bind opacity to animated value
-                    }
-                ]}
-            >
-                <Text style={styles.subtitle}>STATISTICS </Text>
-                <View style={styles.list}>
-                    <Text>Currently {countPeople} user(s) online</Text>
-                </View>
-                <Text style={styles.subtitle2}>User Locations</Text>
-                <View style={styles.list}>
-                    <Text>{stats}</Text>
                 </View>
             </Animated.View>
             <Animated.View
