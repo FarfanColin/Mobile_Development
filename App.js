@@ -1,21 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+//importing navigation libraries
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+//importing screens
+import Home from './pages/Home';
+import FindMe from './pages/FindMe';
+import AboutUs from './pages/AboutUs';
+import ErrorPage from './pages/ErrorPage';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const request = require("request")
+const url = "http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=b397a6ae6b55b8a60056d40ab62b8972"
+request(url, (error, response, body) => {
+  const data = JSON.parse(body)
+  console.log(data)
+})
+
+//creating navigator
+const navigator = createStackNavigator(
+  {
+    Home: { screen: Home },
+    FindMe: { screen: FindMe },
+    AboutUs: { screen: AboutUs },
+    ErrorPage: { screen: ErrorPage }
+  });
+
+export default createAppContainer(navigator);
