@@ -39,6 +39,16 @@ export default function Home({ navigation }) {
                     title="WEATHER"
                 />
             </View>
+            <View style={styles.padd}>
+                <Button
+                    color="grey"
+                    variant="contained"
+                    onPress={() => {
+                        navigation.navigate("converter");
+                    }}
+                    title="CURRENCY"
+                />
+            </View>
         </View>
         
     );
