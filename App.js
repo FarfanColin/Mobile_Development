@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import FindMe from './pages/FindMe';
 import AboutUs from './pages/AboutUs';
 import ErrorPage from './pages/ErrorPage';
-import weather from './pages/weather';
+import weather from './pages/weather.jsx';
 
 //creating navigator
 const navigator = createStackNavigator(
