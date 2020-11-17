@@ -29,8 +29,20 @@ export default function Home({ navigation }) {
                     title="FIND ME"
                 />
             </View>
+            <View style={styles.padd}>
+                <Button
+                    color="grey"
+                    variant="contained"
+                    onPress={() => {
+                        navigation.navigate("weather");
+                    }}
+                    title="WEATHER"
+                />
+            </View>
         </View>
+        
     );
+    
 }
 
 //  Stylesheet for Home
