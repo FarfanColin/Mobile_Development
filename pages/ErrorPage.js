@@ -10,7 +10,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 
 //  Showing Error Screen Components
-export default function ErrorPage({ navigation }) {
+export default function errorpage({ navigation }) {
     //  Loading fonts
     useFonts({
         Raleway_400Regular,
@@ -37,7 +37,7 @@ export default function ErrorPage({ navigation }) {
     );
 }
 
-//Stylesheet for ErrorPage screen
+//Stylesheet for errorpage screen
 const styles = StyleSheet.create({
     container: {
         flex: 1,

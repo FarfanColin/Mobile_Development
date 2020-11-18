@@ -1,5 +1,10 @@
 import React, { Component } from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import { Animated, StyleSheet, Text, View, Button } from "react-native";
 
+//Adding currencies, setting the base as USD and the default "convert to" as EUR
 class converter extends Component {
   state = {
     currencies: ["CAD","HKD",	"ISK",	"PHP",	"DKK",	"HUF",	"CZK",	"GBP",	"RON",	"SEK",	"IDR",	"INR",	"BRL",	"RUB",	"HRK",	"JPY",	"THB",	"CHF",	"EUR",	"MYR",	"BGN",	"TRY",	"CNY",	"NOK",	"NZD",	"ZAR",	"USD",	"MXN",	"SGD",	"AUD",	"ILS",	"KRW",	"PLN"],
@@ -65,13 +70,18 @@ class converter extends Component {
   render() {
     const { currencies, base, amount, convertTo, result, date } = this.state;
     return (
-      <div className="container my-5">
-        <div className="row">
-          <div className="col-lg-6 mx-auto">
-            <div className="card card-body">
-              <h5>
+      <View style={styles.container}>  
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h6" color="inherit">
+                        CURRENCY CONVERTER
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Text style={styles.title}>EXHANGE CURRENCY</Text>
+            <h2>
                 {amount} {base} is equevalent to
-              </h5>
+              </h2>
               <h2>
                 {amount === ""
                   ? "0"
@@ -80,7 +90,6 @@ class converter extends Component {
                   : result}{" "}
                 {convertTo}
               </h2>
-              <p>As of {amount === "" ? "/ / /" : date === null ? "" : date}</p>
               <div className="row">
                 <div className="col-lg-10">
                   <form className="form-inline mb-4">
@@ -128,21 +137,91 @@ class converter extends Component {
                         </option>
                       ))}
                     </select>
+                    <br></br><br></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button onClick={this.handleSwap} className="swap">SWAP</button>
                   </form>
+                  
+                  
                 </div>
-
-                <div className="col-lg-2 align-self-center">
-                  <h1 onClick={this.handleSwap} className="swap">
-                    &#8595;&#8593;
-                  </h1>
-                </div>
+                  
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+              </View>
     );
   }
 }
+
+//  Stylesheet for findme Screen
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      alignItems: "center",
+      backgroundColor: "#02b2e8",
+  },
+  title: {
+      color: "#ffffff",
+      fontFamily: "Raleway_700Bold",
+      fontSize: 25,
+      fontWeight: "bold",
+      paddingTop: 45,
+      paddingBottom: 15,
+  },
+  subtitle: {
+      color: "grey",
+      fontFamily: "Raleway_600SemiBold",
+      fontSize: 20,
+      fontWeight: "bold",
+  },
+  subtitle2: {
+      color: "grey",
+      fontFamily: "Raleway_600SemiBold",
+      fontSize: 15,
+      fontWeight: "bold",
+  },
+  rowUser: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      width: "60%",
+      alignItems: "center",
+      justifyContent: "space-evenly",
+  },
+  user: {
+      fontFamily: "Raleway_600SemiBold",
+      fontSize: 15,
+      fontWeight: "bold",
+      paddingTop: 20,
+      paddingBottom: 25,
+  },
+  fadingContainer: {
+      width: "70%",
+      paddingVertical: 8,
+      paddingHorizontal: 16,
+      backgroundColor: "powderblue",
+      marginTop: 20,
+      fontFamily: "Raleway_400Regular",
+      fontSize: 15,
+  },
+  fadingContainerdeveloper: {
+      width: "50%",
+      paddingVertical: 8,
+      paddingHorizontal: 16,
+      marginTop: 20,
+      fontFamily: "Raleway_400Regular",
+      fontSize: 15,
+  },
+  list: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      borderTopWidth: "thin",
+      borderTopColor: "grey",
+      paddingBottom: 5,
+  },
+  listRowHeader: {
+      flex: 1,
+      color: "grey",
+  },
+  listRow: {
+      flex: 1,
+  }
+});
 
 export default converter;

@@ -1,5 +1,8 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useRef, useEffect } from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import { Animated, StyleSheet, Text, View, Button } from "react-native";
 //  Importing Google Fonts
 import {
@@ -13,7 +16,7 @@ import { FontAwesome5 } from "@expo/vector-icons";
 //  Importing Geolocation library
 import Geolocation from "@react-native-community/geolocation";
 
-export default function FindMe({ navigation }) {
+export default function findme({ navigation }) {
 
     //  Stores user's data
     const [userData, setUserData] = useState({
@@ -89,13 +92,20 @@ export default function FindMe({ navigation }) {
 
     //  Function called in case of error
     function errorMessage(err) {
-        navigation.navigate("ErrorPage", { err });
+        navigation.navigate("errorpage", { err });
     }
 
     //  Displays components
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Welcome to FindMe App!</Text>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h6" color="inherit">
+                        LOCATION
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+            <Text style={styles.title}>CHECK THE LOCATION</Text>
 
             <View style={{ width: "45%" }}>
                 <Button onPress={locateMe} title="Where am I?" />
@@ -144,28 +154,11 @@ export default function FindMe({ navigation }) {
                     <Text style={styles.listRow}>{userData.postcode}</Text>
                 </View>
             </Animated.View>
-            <Animated.View
-                style={[
-                    styles.fadingContainerAboutUs,
-                    {
-                        opacity: fadeAnim, // Bind opacity to animated value
-                    }
-                ]}
-            >
-                <Button
-                    color="grey"
-                    variant="contained"
-                    onPress={() => {
-                        navigation.navigate("AboutUs");
-                    }}
-                    title="ABOUT US"
-                />
-            </Animated.View>
         </View>
     );
 }
 
-//  Stylesheet for FindMe Screen
+//  Stylesheet for findme Screen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -215,7 +208,7 @@ const styles = StyleSheet.create({
         fontFamily: "Raleway_400Regular",
         fontSize: 15,
     },
-    fadingContainerAboutUs: {
+    fadingContainerdeveloper: {
         width: "50%",
         paddingVertical: 8,
         paddingHorizontal: 16,

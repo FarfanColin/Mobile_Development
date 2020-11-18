@@ -1,4 +1,7 @@
 import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import { StyleSheet, Text, View } from "react-native";
 //  Importing Google Fonts
 import {
@@ -9,8 +12,8 @@ import {
 //  Importing library for Icons
 import { FontAwesome5 } from "@expo/vector-icons";
 
-//  Showing AboutUs Screen Components
-export default function Aboutus({ navigation }) {
+//  Showing developer Screen Components
+export default function developer({ navigation }) {
     //  Loading fonts
     useFonts({
         Raleway_400Regular,
@@ -19,30 +22,35 @@ export default function Aboutus({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.team}>Developed by:</Text>
-            <Text style={styles.small}>(the wonderful students)</Text>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h6" color="inherit">
+                        CREDITS
+                    </Typography>
+                </Toolbar>
+            </AppBar>
 
-            <View style={styles.rowDeveloper}>
-                <FontAwesome5 name="user-alt" size={20} color="black" />
-                <Text style={styles.developer}>Alan Gabriel Arango Monroy</Text>
-            </View>
+            <Text style={styles.team}>Developed by:</Text>
+            
+            <br></br><br></br>
+
             <View style={styles.rowDeveloper}>
                 <FontAwesome5 name="user-alt" size={20} color="black" />
                 <Text style={styles.developer}>Christian Jesus Farfan Colin</Text>
             </View>
+
+            <br></br><br></br>
+
             <View style={styles.rowDeveloper}>
                 <FontAwesome5 name="user-alt" size={20} color="black" />
-                <Text style={styles.developer}>Claudia Luiza Gonzalez Ferrufino</Text>
+                <Text style={styles.developer}>2020086</Text>
             </View>
-            <View style={styles.rowDeveloper}>
-                <FontAwesome5 name="user-alt" size={20} color="black" />
-                <Text style={styles.developer}>Jackson Ferreira Dos Santos</Text>
-            </View>
+            
         </View>
     );
 }
 
-//Stylesheet for AboutUs screen
+//Stylesheet for developer screen
 const styles = StyleSheet.create({
     container: {
         flex: 1,

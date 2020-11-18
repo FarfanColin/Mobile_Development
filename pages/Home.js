@@ -1,17 +1,27 @@
-import React from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import React, {useRef} from "react";
+import { Animated, StyleSheet, Text, View, Button, Image } from "react-native";
 //  Importing GoogleFonts
 import {
     useFonts,
     Raleway_400Regular,
+    Raleway_600SemiBold,
     Raleway_700Bold,
 } from "@expo-google-fonts/raleway";
 
-//  Showing Home Screen Components
-export default function Home({ navigation }) {
+//  Showing home Screen Components
+export default function home({ navigation }) {
     // Loading fonts
     useFonts({
         Raleway_400Regular,
+        Raleway_700Bold,
+    });
+
+    //  Used for the animated boxes style
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    //  Loading fonts
+    useFonts({
+        Raleway_400Regular,
+        Raleway_600SemiBold,
         Raleway_700Bold,
     });
 
@@ -24,7 +34,7 @@ export default function Home({ navigation }) {
                     color="grey"
                     variant="contained"
                     onPress={() => {
-                        navigation.navigate("FindMe");
+                        navigation.navigate("findme");
                     }}
                     title="FIND ME"
                 />
@@ -46,7 +56,17 @@ export default function Home({ navigation }) {
                     onPress={() => {
                         navigation.navigate("converter");
                     }}
-                    title="CURRENCY"
+                    title="CURRENCY CONVERTER"
+                />
+            </View>
+            <View style={styles.padd}>
+                <Button
+                    color="grey"
+                    variant="contained"
+                    onPress={() => {
+                        navigation.navigate("developer");
+                    }}
+                    title="ABOUT THE DEVELOPER"
                 />
             </View>
         </View>
@@ -55,7 +75,7 @@ export default function Home({ navigation }) {
     
 }
 
-//  Stylesheet for Home
+//  Stylesheet for home
 const styles = StyleSheet.create({
     container: {
         flex: 1,

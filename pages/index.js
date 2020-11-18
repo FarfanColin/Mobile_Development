@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import converter from "./converter";
 
-import "./index.css";
+import "./styles.css";
 
 function App() {
   return (

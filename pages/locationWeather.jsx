@@ -7,7 +7,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import ErrorIcon from "@material-ui/icons/Error";
-import getLocationWeather from "./getLocationWeather";
+import APIweather from "./APIweather";
 
 const useStyles = makeStyles(theme => ({
     headerLine: {
@@ -91,7 +91,7 @@ function LocationWeather({ location }) {
     React.useEffect(() => {
         const loadingIndicatorTimeout = setTimeout(() => setIsLoading(true), 500);
         const getWeather = async () => {
-            const result = await getLocationWeather(location);
+            const result = await APIweather(location);
             clearTimeout(loadingIndicatorTimeout);
             setIsLoading(false);
             setWeatherData(result.success ? result.data : {});
