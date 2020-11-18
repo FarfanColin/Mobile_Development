@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 import { Animated, StyleSheet, Text, View, Button, Image } from "react-native";
 //  Importing GoogleFonts
 import {
@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/raleway";
 
 //  Showing home Screen Components
-export default function home({ navigation }) {
+export default function HOME({ navigation }) {
     // Loading fonts
     useFonts({
         Raleway_400Regular,
@@ -25,18 +25,20 @@ export default function home({ navigation }) {
         Raleway_700Bold,
     });
 
+    //Displaying home details and options, applying styles
     return (
         <View style={styles.container}>
-            <Text style={styles.team}>Reactors</Text>
-            <Image style={styles.logo} source={require("../assets/logo.png")} />
+            <Text style={styles.team}>myavocAPP</Text>
+            <Image style={styles.logo} source={require("../assets/logo.gif")} />
+            <br></br>
             <View style={styles.padd}>
                 <Button
                     color="grey"
                     variant="contained"
                     onPress={() => {
-                        navigation.navigate("findme");
+                        navigation.navigate("LOCATION");
                     }}
-                    title="FIND ME"
+                    title="LOCATION"
                 />
             </View>
             <View style={styles.padd}>
@@ -44,7 +46,7 @@ export default function home({ navigation }) {
                     color="grey"
                     variant="contained"
                     onPress={() => {
-                        navigation.navigate("weather");
+                        navigation.navigate("WEATHER");
                     }}
                     title="WEATHER"
                 />
@@ -54,7 +56,7 @@ export default function home({ navigation }) {
                     color="grey"
                     variant="contained"
                     onPress={() => {
-                        navigation.navigate("converter");
+                        navigation.navigate("CONVERTER");
                     }}
                     title="CURRENCY CONVERTER"
                 />
@@ -64,28 +66,28 @@ export default function home({ navigation }) {
                     color="grey"
                     variant="contained"
                     onPress={() => {
-                        navigation.navigate("developer");
+                        navigation.navigate("CREDITS");
                     }}
                     title="ABOUT THE DEVELOPER"
                 />
             </View>
         </View>
-        
+
     );
-    
+
 }
 
-//  Stylesheet for home
+//  Stylesheet for the home screen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#02b2e8",
+        backgroundColor: "#02e8d9",
         alignItems: "center",
         justifyContent: "center",
     },
     logo: {
         width: 200,
-        height: 150,
+        height: 200,
     },
     team: {
         color: "#ffffff",
@@ -95,6 +97,6 @@ const styles = StyleSheet.create({
     padd: {
         fontFamily: "Raleway_400Regular",
         marginTop: 10,
-        width: "30%",
+        width: "20%",
     },
 });

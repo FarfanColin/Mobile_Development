@@ -5,8 +5,8 @@ import Card from "@material-ui/core/Card";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import LocationEntry from "./locationEntry";
-import LocationWeather from "./locationWeather";
+import Entry from "./Entry";
+import LocationWeather from "./LocationWeather";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -22,7 +22,7 @@ function WeatherCard({ location, canDelete, onDelete, onUpdate }) {
     return (
         <Card className={classes.root} variant="outlined">
             <CardContent className={classes.content}>
-                {!location && <LocationEntry onUpdate={onUpdate} />}
+                {!location && <Entry onUpdate={onUpdate} />}
                 {location && <LocationWeather location={location} />}
             </CardContent>
             <CardActions>

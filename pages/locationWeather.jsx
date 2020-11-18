@@ -9,6 +9,8 @@ import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
 import ErrorIcon from "@material-ui/icons/Error";
 import APIweather from "./APIweather";
 
+
+//  Stylesheet for the features on the weather screen
 const useStyles = makeStyles(theme => ({
     headerLine: {
         display: "flex",
@@ -31,10 +33,12 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+//Indicating the process of the task
 function LoadingIndicator({ isLoading }) {
     return isLoading ? <CircularProgress /> : null;
 }
 
+//Function in case of error
 function ErrorMessage({ apiError }) {
     if (!apiError) return null;
 
@@ -48,6 +52,7 @@ function ErrorMessage({ apiError }) {
     );
 }
 
+//Retrieving weather features, so we can display extra details (windy, cloudy, rainy) from the API
 function WeatherDisplay({ weatherData }) {
     const classes = useStyles();
     const { temp, description, icon, windTransform, windSpeed } = React.useMemo(() => {
@@ -101,7 +106,8 @@ function LocationWeather({ location }) {
         getWeather();
         return () => clearTimeout(loadingIndicatorTimeout);
     }, [location]);
-
+    
+    //Retrieving weather features, so we can display extra details (flags) from the API
     const { flagIcon, countryCode } = React.useMemo(() => {
         return {
             flagIcon: weatherData.sys ? `https://www.countryflags.io/${weatherData.sys.country}/shiny/32.png` : "",

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TextField from "@material-ui/core/TextField";
 
-function LocationEntry({ onUpdate }) {
+function Entry({ onUpdate }) {
     const handleBlur = ev => onUpdate(ev.target.value);
 
     const handleKeyDown = ev => {
@@ -14,8 +14,8 @@ function LocationEntry({ onUpdate }) {
     return <TextField autoFocus label="Enter location" onBlur={handleBlur} onKeyDown={handleKeyDown} />;
 }
 
-LocationEntry.propTypes = {
+Entry.propTypes = {
     onUpdate: PropTypes.func.isRequired,
 };
 
-export default LocationEntry;
+export default Entry;

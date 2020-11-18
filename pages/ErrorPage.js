@@ -1,24 +1,27 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+
 //  Importing Google Fonts
 import {
     useFonts,
     Raleway_400Regular,
     Raleway_700Bold,
 } from "@expo-google-fonts/raleway";
+
 //  Importing library for Icons
 import { MaterialIcons } from "@expo/vector-icons";
 
 //  Showing Error Screen Components
 export default function errorpage({ navigation }) {
+
     //  Loading fonts
     useFonts({
         Raleway_400Regular,
         Raleway_700Bold,
     });
 
+    //Setting errors statements and displaying details
     const error = navigation.state.params.err.message;
-
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Oops! Something went wrong!</Text>
@@ -41,12 +44,12 @@ export default function errorpage({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#02b2e8",
+        backgroundColor: "#02e8d9",
         alignItems: "center",
         justifyContent: "flex-start",
     },
     title: {
-        color: "#ffffff",
+        color: "#61686b",
         fontFamily: "Raleway_700Bold",
         fontSize: 35,
         textAlign: "center",

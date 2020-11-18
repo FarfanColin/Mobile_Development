@@ -4,6 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { Animated, StyleSheet, Text, View, Button } from "react-native";
+
 //  Importing Google Fonts
 import {
     useFonts,
@@ -11,12 +12,14 @@ import {
     Raleway_600SemiBold,
     Raleway_700Bold,
 } from "@expo-google-fonts/raleway";
+
 //  Importing library for Icons
 import { FontAwesome5 } from "@expo/vector-icons";
+
 //  Importing Geolocation library
 import Geolocation from "@react-native-community/geolocation";
 
-export default function findme({ navigation }) {
+export default function LOCATION({ navigation }) {
 
     //  Stores user's data
     const [userData, setUserData] = useState({
@@ -30,6 +33,7 @@ export default function findme({ navigation }) {
 
     //  Used for the animated boxes style
     const fadeAnim = useRef(new Animated.Value(0)).current;
+
     //  Loading fonts
     useFonts({
         Raleway_400Regular,
@@ -63,7 +67,7 @@ export default function findme({ navigation }) {
                     country: json.results[0].components.country,
                     county: json.results[0].components.county,
                     postcode: json.results[0].components.postcode,
-                });    
+                });
             });
     };
 
@@ -98,17 +102,10 @@ export default function findme({ navigation }) {
     //  Displays components
     return (
         <View style={styles.container}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" color="inherit">
-                        LOCATION
-                    </Typography>
-                </Toolbar>
-            </AppBar>
             <Text style={styles.title}>CHECK THE LOCATION</Text>
 
-            <View style={{ width: "45%" }}>
-                <Button onPress={locateMe} title="Where am I?" />
+            <View style={{ width: "20%" }}>
+                <Button onPress={locateMe} title="PRESS TO GET YOUR CURRENT POSITION" />
             </View>
             <Animated.View
                 style={[
@@ -158,15 +155,15 @@ export default function findme({ navigation }) {
     );
 }
 
-//  Stylesheet for findme Screen
+//  Stylesheet for the location screen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: "#02b2e8",
+        backgroundColor: "#02e8d9",
     },
     title: {
-        color: "#ffffff",
+        color: "#61686b",
         fontFamily: "Raleway_700Bold",
         fontSize: 25,
         fontWeight: "bold",

@@ -9,6 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import AddIcon from "@material-ui/icons/Add";
 import WeatherCard from "./weatherCard";
 
+//  Stylesheet for the weather screen
 const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
@@ -18,7 +19,7 @@ const useStyles = makeStyles(() => ({
         overflow: "hidden",
         flex: 1,
         alignItems: "center",
-        backgroundColor: "#02b2e8",
+        backgroundColor: "#02e8d9",
     },
     containerGrid: {
         flex: 1,
@@ -32,7 +33,7 @@ const useStyles = makeStyles(() => ({
         right: "0px",
     },
     title: {
-        color: "#ffffff",
+        color: "#61686b",
         fontFamily: "Raleway_700Bold",
         fontSize: 25,
         fontWeight: "bold",
@@ -72,15 +73,9 @@ function App() {
 
     const canAddOrRemove = React.useMemo(() => weatherLocations.every(location => location !== ""), [weatherLocations]);
 
+    //Displaying details for the weather screen by applying styles
     return (
         <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    <Typography variant="h6" color="inherit">
-                        WEATHER
-                    </Typography>
-                </Toolbar>
-            </AppBar>
             <Text style={styles.title}>CHECK AND SAVE THE WEATHER</Text>
             <Grid container spacing={3} className={classes.containerGrid}>
                 {weatherLocations.map((location, index) => (
@@ -106,15 +101,15 @@ function App() {
         </div>
     );
 }
-//  Stylesheet for FindMe Screen
+//  Stylesheet for the weather screen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: "#02b2e8",
+        backgroundColor: "#02e8d9",
     },
     title: {
-        color: "#ffffff",
+        color: "#61686b",
         fontFamily: "Raleway_700Bold",
         fontSize: 25,
         fontWeight: "bold",

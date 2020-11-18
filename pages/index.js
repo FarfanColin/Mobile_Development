@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import converter from "./converter";
+import CONVERTER from "./CONVERTER";
 
 import "./styles.css";
 
 function App() {
   return (
     <div className="App">
-      <converter />
+      <CONVERTER />
     </div>
   );
 }
