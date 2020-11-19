@@ -76,7 +76,7 @@ class CONVERTER extends Component {
     const { currencies, base, amount, convertTo, result, date } = this.state;
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>EXHANGE CURRENCY</Text>
+        <Text style={styles.title}>EXCHANGE CURRENCY</Text>
         <h2>
           {amount} {base} is equivalent to
               </h2>
